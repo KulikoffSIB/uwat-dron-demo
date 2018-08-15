@@ -1,0 +1,17 @@
+input[type='text'] {
+  display: block;
+  background-color: #1A344D;
+  border: 1px solid #4988B2;
+}
+
+input[type='submit'] {
+  color: white;
+  background-color: #3DA600;
+  border: 1px solid #3DA600;
+  width: 160px;
+  height: 40px;
+}
+
+.form-row {
+  margin-top: 20px;
+}

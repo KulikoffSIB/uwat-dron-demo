@@ -1,1 +1,48 @@
-<div></div>
+<div class="flex-container-row">
+  <div class="flex-element-4">
+    фото
+  </div>
+  <div class="flex-element-6">
+    форма регистрации
+    <form [formGroup]="registration" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <label> Фамилия
+          <input type="text" formControlName="lastname">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> Имя
+          <input type="text" formControlName="firstname">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> Отчество
+          <input type="text" formControlName="middlename">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> Компания
+          <input type="text" formControlName="company">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> Должность
+          <input type="text" formControlName="post">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> Телефон
+          <input type="text" formControlName="phone">
+        </label>
+      </div>
+      <div class="form-row">
+        <label> E-mail
+          <input type="text" formControlName="email">
+        </label>
+      </div>
+      <div class="form-row">
+        <input type="submit" value="ДОБАВИТЬ">
+      </div>
+    </form>
+  </div>
+</div>
