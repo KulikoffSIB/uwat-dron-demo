@@ -1,1 +1,71 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #031323;
+}
+div {
+  color: #FFD200;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-element-1 {
+  flex: 1;
+}
+
+.flex-element-2 {
+  flex: 2;
+}
+
+.flex-element-3 {
+  flex: 3;
+}
+
+.flex-element-4 {
+  flex: 4;
+}
+
+.flex-element-5 {
+  flex: 5;
+}
+
+.flex-element-6 {
+  flex: 6;
+}
+
+.flex-element-7 {
+  flex: 7;
+}
+
+.flex-element-8 {
+  flex: 8;
+}
+
+.flex-element-9 {
+  flex: 9;
+}
+
+.flex-element-10 {
+  flex: 10;
+}
+
+.flex-element-11 {
+  flex: 11;
+}
+
+.flex-element-12 {
+  flex: 12;
+}
