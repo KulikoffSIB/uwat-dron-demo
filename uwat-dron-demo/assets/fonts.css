@@ -1,0 +1,91 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3533031, 2018-02-27T11:41:55-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Bender-Light by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/light/
+ *
+ * Webfont: Bender-Italic by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/italic/
+ *
+ * Webfont: Bender-LightItalic by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/light-italic/
+ *
+ * Webfont: Bender-Bold by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/bold/
+ *
+ * Webfont: Bender by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/regular/
+ *
+ * Webfont: Bender-Black by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/black/
+ *
+ * Webfont: Bender-BlackItalic by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/black-italic/
+ *
+ * Webfont: Bender-BoldItalic by Jovanny Lemonad
+ * URL: https://www.myfonts.com/fonts/jovanny-lemonad/bender/bold-italic/
+ *
+ *
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3533031
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright (c) 2009 by Oleg Zhuravlev, Gladkikh Ivan. All rights reserved.
+ *
+ * © 2018 MyFonts Inc
+*/
+
+/* @import must be at top of file, otherwise CSS will not work */
+
+@font-face {
+  font-family: 'Bender-Light';
+  src: url('webfonts/35E8E7_0_0.eot');
+  src: url('webfonts/35E8E7_0_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_0_0.woff2') format('woff2'), url('webfonts/35E8E7_0_0.woff') format('woff'), url('webfonts/35E8E7_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-Italic';
+  src: url('webfonts/35E8E7_1_0.eot');
+  src: url('webfonts/35E8E7_1_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_1_0.woff2') format('woff2'), url('webfonts/35E8E7_1_0.woff') format('woff'), url('webfonts/35E8E7_1_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-LightItalic';
+  src: url('webfonts/35E8E7_2_0.eot');
+  src: url('webfonts/35E8E7_2_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_2_0.woff2') format('woff2'), url('webfonts/35E8E7_2_0.woff') format('woff'), url('webfonts/35E8E7_2_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-Bold';
+  src: url('webfonts/35E8E7_3_0.eot');
+  src: url('webfonts/35E8E7_3_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_3_0.woff2') format('woff2'), url('webfonts/35E8E7_3_0.woff') format('woff'), url('webfonts/35E8E7_3_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('webfonts/35E8E7_4_0.eot');
+  src: url('webfonts/35E8E7_4_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_4_0.woff2') format('woff2'), url('webfonts/35E8E7_4_0.woff') format('woff'), url('webfonts/35E8E7_4_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-Black';
+  src: url('webfonts/35E8E7_5_0.eot');
+  src: url('webfonts/35E8E7_5_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_5_0.woff2') format('woff2'), url('webfonts/35E8E7_5_0.woff') format('woff'), url('webfonts/35E8E7_5_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-BlackItalic';
+  src: url('webfonts/35E8E7_6_0.eot');
+  src: url('webfonts/35E8E7_6_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_6_0.woff2') format('woff2'), url('webfonts/35E8E7_6_0.woff') format('woff'), url('webfonts/35E8E7_6_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bender-BoldItalic';
+  src: url('webfonts/35E8E7_7_0.eot');
+  src: url('webfonts/35E8E7_7_0.eot?#iefix') format('embedded-opentype'), url('webfonts/35E8E7_7_0.woff2') format('woff2'), url('webfonts/35E8E7_7_0.woff') format('woff'), url('webfonts/35E8E7_7_0.ttf') format('truetype');
+}
