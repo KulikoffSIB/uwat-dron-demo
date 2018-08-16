@@ -24,6 +24,15 @@ label, input {
   font-weight: 600;
 }
 
+.photo {
+  background-color: #4988B2;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  position: relative;
+  margin: 20px auto 0 auto;
+}
+
 .form-row {
   margin-top: 20px;
 }
