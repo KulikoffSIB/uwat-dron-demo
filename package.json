@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "buildhub": "ng build --prod --base-href https://kulikoffsib.github.io/uwat-dron-demo",
+    "buildhub": "ngh --dir dist/uwat-dron-demo"
   },
   "private": true,
   "dependencies": {
