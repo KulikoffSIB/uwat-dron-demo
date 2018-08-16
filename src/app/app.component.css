@@ -1,0 +1,31 @@
+.logo, .registration-from {
+  align-self: center;
+}
+
+.registration-from {
+  border: 1px solid #4787B1;
+  border-top: 5px solid #4787B1;
+  background-color: #0D2C49;
+}
+
+.logo-wrap {
+}
+
+.rn, .sibintek {
+  display: table-cell;
+  height: 300px;
+  vertical-align: middle;
+}
+.rn {
+  padding-right: 30px;
+}
+
+.sibintek {
+  padding-left: 50px;
+}
+img {
+}
+
+.sibintek {
+  border-left: 1px solid #CBCDCF;
+}
