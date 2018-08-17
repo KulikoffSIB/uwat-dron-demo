@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class RegistrationComponent implements OnInit {
   @ViewChild('camera') camera: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
-  @ViewChild('test') test: ElementRef;
+  @ViewChild('photo') photo: ElementRef;
   registration: FormGroup;
   videoURL = window.URL;
 
@@ -57,6 +57,6 @@ export class RegistrationComponent implements OnInit {
   takePhoto() {
     const context = this.canvas.nativeElement.getContext('2d');
     context.drawImage(this.camera.nativeElement, 0, 0);
-    const photo = this.canvas.nativeElement.toDataURL();
+    this.photo.nativeElement.src = this.canvas.nativeElement.toDataURL();
   }
 }
