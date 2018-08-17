@@ -1,6 +1,19 @@
 <div class="flex-container-row registration-from">
   <div class="flex-element-4">
-    <div class="photo">
+    <div class="flex-container-column">
+      <div class="flex-element-1">
+        <div class="photo" (click)="getVideoStream()">
+          <video #camera width="320" height="220"></video>
+        </div>
+      </div>
+      <div class="flex-element-1">
+        <button (click)="takePhoto()">Снять</button>
+      </div>
+      <div class="flex-element-1">
+        <div style="position: relative">
+          <canvas #canvas width="640" height="480"></canvas>
+        </div>
+      </div>
     </div>
   </div>
   <div class="flex-element-6">

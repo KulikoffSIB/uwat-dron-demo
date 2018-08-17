@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild('camera') camera: ElementRef;
+  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('test') test: ElementRef;
   registration: FormGroup;
+  videoURL = window.URL;
 
   constructor(
     private fb: FormBuilder
@@ -31,4 +35,28 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registration.controls.name.value);
   }
 
+  getVideoStream() {
+    // @ts-ignore
+    navigator.getMedia = (navigator.getUserMedia ||
+      navigator['webkitGetUserMedia'] ||
+      navigator['mozGetUserMedia'] ||
+      navigator['msGetUserMedia']);
+
+    // @ts-ignore
+    navigator.getMedia(
+      {
+        video: true
+      },
+      (stream) => {
+        this.camera.nativeElement.src = this.videoURL.createObjectURL(stream);
+        this.camera.nativeElement.play();
+      },
+      (err) => console.log(err.message));
+  }
+
+  takePhoto() {
+    const context = this.canvas.nativeElement.getContext('2d');
+    context.drawImage(this.camera.nativeElement, 0, 0);
+    const photo = this.canvas.nativeElement.toDataURL();
+  }
 }
