@@ -1,10 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FaceRecognitionService} from '../services/face-recognition.service';
+
+
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  providers: [FaceRecognitionService]
 })
 export class RegistrationComponent implements OnInit {
   @ViewChild('camera') camera: ElementRef;
@@ -14,25 +18,34 @@ export class RegistrationComponent implements OnInit {
   videoURL = window.URL;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private msfr: FaceRecognitionService
   ) {
     this.registration = fb.group({
-      'lastname': [null, Validators.compose([Validators.required])],
-      'firstname': [null, Validators.compose([Validators.required])],
-      'middlename': [null, Validators.compose([Validators.required])],
-      'company': [null, Validators.compose([Validators.required])],
-      'post': [null, Validators.compose([Validators.required])],
-      'phone': [null, Validators.compose([Validators.required])],
-      'email': [null, Validators.compose([Validators.required, Validators.email])],
+      'lastname': [null, Validators.compose([])],
+      'firstname': [null, Validators.compose([])],
+      'midname': [null, Validators.compose([])],
+      'company': [null, Validators.compose([])],
+      'post': [null, Validators.compose([])],
     });
   }
 
   ngOnInit() {
+    this.camera.nativeElement.click();
   }
 
   onSubmit() {
-    console.log(this.registration.valid);
-    console.log(this.registration.controls.name.value);
+    this.msfr.createPerson({
+      lastName: this.registration.controls['lastname'].value,
+      name: this.registration.controls['firstname'].value,
+      midName: this.registration.controls['midname'].value,
+      company: this.registration.controls['company'].value,
+      post: this.registration.controls['post'].value
+    }).subscribe(user => {
+      this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), user['personId']).subscribe(result => {
+        console.log(result['persistedFaceId']);
+      });
+    });
   }
 
   getVideoStream() {
@@ -56,7 +69,7 @@ export class RegistrationComponent implements OnInit {
 
   takePhoto() {
     const context = this.canvas.nativeElement.getContext('2d');
-    context.drawImage(this.camera.nativeElement, 0, 0);
-    this.photo.nativeElement.src = this.canvas.nativeElement.toDataURL();
+    context.drawImage(this.camera.nativeElement.src, 0, 0);
   }
+
 }
