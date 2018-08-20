@@ -9,7 +9,7 @@ input[type='text'] {
   margin-top: 5px;
 }
 
-input[type='submit'] {
+input[type='submit'], button {
   color: white;
   background-color: #3DA600;
   border: 1px solid #3DA600;
@@ -19,9 +19,15 @@ input[type='submit'] {
   cursor: pointer;
 }
 
-label, input {
+label, input, button {
   font-family: 'Bender', sans-serif;
   font-weight: 600;
+}
+
+button {
+  background-color: #4988B2;
+  border: 1px solid #4988B2;
+  width: 293px;
 }
 
 video {
@@ -34,9 +40,9 @@ button {
 
 canvas {
   position: absolute;
-  top: -120px;
-  left: -174px;
-  transform: scale(0.455);
+  top: -130px;
+  left: -173px;
+  transform: scale(0.458);
 }
 
 .photo {
