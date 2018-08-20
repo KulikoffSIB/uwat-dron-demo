@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FaceRecognitionService} from '../services/face-recognition.service';
 
 
-
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -16,6 +15,8 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('photo') photo: ElementRef;
   registration: FormGroup;
   videoURL = window.URL;
+  userId: string;
+  userFaceId: string;
 
   constructor(
     private fb: FormBuilder,
@@ -42,9 +43,12 @@ export class RegistrationComponent implements OnInit {
       company: this.registration.controls['company'].value,
       post: this.registration.controls['post'].value
     }).subscribe(user => {
-      this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), user['personId']).subscribe(result => {
-        console.log(result['persistedFaceId']);
-      });
+      this.userId = user['personId'];
+
+      this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), this.userId)
+        .subscribe(result => {
+          this.userFaceId = result['persistedFaceId'];
+        });
     });
   }
 
