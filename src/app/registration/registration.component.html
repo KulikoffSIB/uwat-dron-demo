@@ -46,6 +46,12 @@
       <div class="form-row">
         <input type="submit" value="ДОБАВИТЬ">
       </div>
+      <div class="form-row error" *ngIf="faceError">
+        Может быть вы китаец или сапог
+      </div>
+      <div class="form-row error" *ngIf="noPhoto">
+        Фотки нет
+      </div>
     </form>
   </div>
 </div>

@@ -17,6 +17,9 @@ export class RegistrationComponent implements OnInit {
   videoURL = window.URL;
   userId: string;
   userFaceId: string;
+  faceError: string;
+  emptyCanvasImg: string;
+  noPhoto = false;
 
   constructor(
     private fb: FormBuilder,
@@ -33,23 +36,36 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.camera.nativeElement.click();
+    this.emptyCanvasImg = this.canvas.nativeElement.toDataURL();
+    console.log(this.emptyCanvasImg);
   }
 
   onSubmit() {
-    this.msfr.createPerson({
-      lastName: this.registration.controls['lastname'].value,
-      name: this.registration.controls['firstname'].value,
-      midName: this.registration.controls['midname'].value,
-      company: this.registration.controls['company'].value,
-      post: this.registration.controls['post'].value
-    }).subscribe(user => {
-      this.userId = user['personId'];
+    console.log(this.emptyCanvasImg === this.canvas.nativeElement.toDataURL());
+    if (this.emptyCanvasImg === this.canvas.nativeElement.toDataURL()) {
+      this.noPhoto = true;
+    } else {
+      this.noPhoto = false;
+      this.msfr.createPerson({
+        lastName: this.registration.controls['lastname'].value,
+        name: this.registration.controls['firstname'].value,
+        midName: this.registration.controls['midname'].value,
+        company: this.registration.controls['company'].value,
+        post: this.registration.controls['post'].value
+      }).subscribe(user => {
+        this.userId = user['personId'];
 
-      this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), this.userId)
-        .subscribe(result => {
-          this.userFaceId = result['persistedFaceId'];
-        });
-    });
+        this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), this.userId)
+          .subscribe(
+            result => {
+              this.userFaceId = result['persistedFaceId'];
+            },
+            error => {
+              this.faceError = error.message;
+            },
+            () => console.log('completed'));
+      });
+    }
   }
 
   getVideoStream() {

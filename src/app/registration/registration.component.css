@@ -19,9 +19,13 @@ input[type='submit'], button {
   cursor: pointer;
 }
 
-label, input, button {
+label, input, button, .error {
   font-family: 'Bender', sans-serif;
   font-weight: 600;
+}
+
+.error {
+  color: #a5291e;
 }
 
 button {
