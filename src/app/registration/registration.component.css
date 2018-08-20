@@ -28,6 +28,10 @@ label, input, button, .error {
   color: #a5291e;
 }
 
+.success {
+  color: #3DA600;
+}
+
 button {
   background-color: #4988B2;
   border: 1px solid #4988B2;

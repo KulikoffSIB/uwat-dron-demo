@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
   faceError: string;
   emptyCanvasImg: string;
   noPhoto = false;
+  success = false;
 
   constructor(
     private fb: FormBuilder,
@@ -63,7 +64,9 @@ export class RegistrationComponent implements OnInit {
             error => {
               this.faceError = error.message;
             },
-            () => console.log('completed'));
+            () => {
+              this.success = true;
+            });
       });
     }
   }
