@@ -69,7 +69,7 @@ export class RegistrationComponent implements OnInit {
 
   takePhoto() {
     const context = this.canvas.nativeElement.getContext('2d');
-    context.drawImage(this.camera.nativeElement.src, 0, 0);
+    context.drawImage(this.camera.nativeElement, 0, 0);
   }
 
 }
