@@ -38,11 +38,9 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.camera.nativeElement.click();
     this.emptyCanvasImg = this.canvas.nativeElement.toDataURL();
-    console.log(this.emptyCanvasImg);
   }
 
   onSubmit() {
-    console.log(this.emptyCanvasImg === this.canvas.nativeElement.toDataURL());
     if (this.emptyCanvasImg === this.canvas.nativeElement.toDataURL()) {
       this.noPhoto = true;
     } else {
@@ -66,6 +64,8 @@ export class RegistrationComponent implements OnInit {
             },
             () => {
               this.success = true;
+              this.faceError = null;
+              this.noPhoto = false;
             });
       });
     }
