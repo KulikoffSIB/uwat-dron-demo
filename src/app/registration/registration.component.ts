@@ -61,6 +61,8 @@ export class RegistrationComponent implements OnInit {
             },
             error => {
               this.faceError = error.message;
+              this.success = false;
+              this.noPhoto = false;
             },
             () => {
               this.success = true;
