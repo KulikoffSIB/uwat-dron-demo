@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="flex-element-1">
-        <button (click)="takePhoto()">Снять</button>
+        <button (click)="takePhoto()">Сделать снимок</button>
       </div>
       <div class="flex-element-1">
         <div style="position: relative">
@@ -47,13 +47,13 @@
         <input type="submit" value="ДОБАВИТЬ">
       </div>
       <div class="form-row error" *ngIf="faceError">
-        Может быть вы китаец или сапог
+        Лицо не распознано
       </div>
       <div class="form-row error" *ngIf="noPhoto">
-        Фотки нет
+        Нет снимка
       </div>
       <div *ngIf="success" class="form-row success">
-        Всё хорошо
+        Лицо распознано
       </div>
     </form>
   </div>
