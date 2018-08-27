@@ -23,6 +23,12 @@ input[type='submit'], button {
   cursor: pointer;
 }
 
+input[type='submit']:disabled {
+  background-color: rgba(39, 88, 0, 0.87);
+  border: 1px solid rgba(39, 88, 0, 0.87);
+  cursor: no-drop;
+}
+
 label, input, button, .error {
   font-family: 'Bender', sans-serif;
   font-weight: 600;

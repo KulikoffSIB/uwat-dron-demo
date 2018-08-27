@@ -53,13 +53,10 @@
         </label>
       </div>
       <div class="form-row">
-        <input type="submit" value="ДОБАВИТЬ" [disabled]="registration.valid">
+        <input type="submit" value="ДОБАВИТЬ" [disabled]="registration.invalid || noPhoto || !isFace">
       </div>
       <div class="form-row error" *ngIf="faceError">
         Лицо не распознано
-      </div>
-      <div class="form-row error" *ngIf="noPhoto">
-        Нет снимка
       </div>
       <div *ngIf="success" class="form-row success">
         Лицо распознано

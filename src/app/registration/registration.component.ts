@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   userFaceId: string;
   faceError: string;
   emptyCanvasImg: string;
-  noPhoto = false;
+  noPhoto = true;
   success = false;
   isFace: boolean;
 
