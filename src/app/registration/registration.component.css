@@ -36,10 +36,12 @@ label, input, button, .error {
 
 .error {
   color: #a5291e;
+  text-shadow: 2px 2px 2px #031323;
 }
 
 .success {
   color: #3DA600;
+  text-shadow: 2px 2px 2px #031323;
 }
 
 button {
