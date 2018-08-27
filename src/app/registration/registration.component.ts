@@ -15,12 +15,14 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('photo') photo: ElementRef;
   registration: FormGroup;
   videoURL = window.URL;
+  base64image: string;
   userId: string;
   userFaceId: string;
   faceError: string;
   emptyCanvasImg: string;
   noPhoto = false;
   success = false;
+  isFace: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -95,6 +97,14 @@ export class RegistrationComponent implements OnInit {
   takePhoto() {
     const context = this.canvas.nativeElement.getContext('2d');
     context.drawImage(this.camera.nativeElement, 0, 0);
+    this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
+    this.msfr.detect(this.base64image).subscribe(res => {
+      if (res.length > 0 && res[0]['faceId']) {
+        this.isFace = true;
+      } else {
+        this.isFace = false;
+      }
+    });
   }
 
 }

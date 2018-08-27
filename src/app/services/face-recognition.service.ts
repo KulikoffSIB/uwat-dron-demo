@@ -14,15 +14,15 @@ export class FaceRecognitionService {
     this.MSFR_API_HOST = 'https://northeurope.api.cognitive.microsoft.com/face/v1.0/';
   }
 
-  detect() {
-    this.http.post(this.MSFR_API_HOST, {}, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': this.key
-      }
-    }).subscribe(res => {
-      console.log(res);
-    });
+  detect(base64img: string): Observable<any> {
+    return this.http.post(this.MSFR_API_HOST + 'detect',
+      this.convertToBLOB(base64img),
+      {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'Ocp-Apim-Subscription-Key': this.key
+        }
+      });
   }
 
   // создание пользователя в группе
@@ -34,7 +34,7 @@ export class FaceRecognitionService {
     post: string;
   }): Observable<any> {
     return this.http.post(this.MSFR_API_HOST + 'persongroups/1534/persons', {
-      name: 'copterDemoPerson',
+      name: 'demo-person',
       userData: JSON.stringify(user)
     }, {
       headers: {

@@ -68,3 +68,12 @@ canvas {
 .registration-from {
   padding: 50px;
 }
+
+.face-recognition-result {
+  position: relative;
+  color: white;
+  font-size: 22px;
+  top: 190px;
+  left: 10px;
+  font-family: 'Bender', sans-serif;
+}
