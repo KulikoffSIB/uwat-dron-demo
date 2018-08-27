@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FaceRecognitionService} from '../services/face-recognition.service';
+import {ImgurService} from '../services/imgur.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   registration: FormGroup;
   videoURL = window.URL;
   base64image: string;
+  imgURL: string;
   userId: string;
   userFaceId: string;
   faceError: string;
@@ -26,7 +28,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private msfr: FaceRecognitionService
+    private msfr: FaceRecognitionService,
+    private imgur: ImgurService
   ) {
     this.registration = fb.group({
       'lastname': [null, Validators.compose([Validators.required])],
@@ -52,7 +55,8 @@ export class RegistrationComponent implements OnInit {
         name: this.registration.controls['firstname'].value,
         midName: this.registration.controls['midname'].value,
         company: this.registration.controls['company'].value,
-        post: this.registration.controls['post'].value
+        post: this.registration.controls['post'].value,
+        imgURL: this.imgURL
       }).subscribe(user => {
         this.userId = user['personId'];
 
@@ -101,7 +105,10 @@ export class RegistrationComponent implements OnInit {
     this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
     this.msfr.detect(this.base64image).subscribe(res => {
       if (res.length > 0 && res[0]['faceId']) {
-        this.isFace = true;
+        this.imgur.uploadPersonImage(this.base64image).subscribe(imageData => {
+          this.imgURL = imageData.data.link;
+          this.isFace = true;
+        });
       } else {
         this.isFace = false;
       }

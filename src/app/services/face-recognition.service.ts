@@ -32,6 +32,7 @@ export class FaceRecognitionService {
     lastName: string;
     company: string
     post: string;
+    imgURL: string;
   }): Observable<any> {
     return this.http.post(this.MSFR_API_HOST + 'persongroups/1534/persons', {
       name: 'demo-person',
