@@ -29,11 +29,11 @@ export class RegistrationComponent implements OnInit {
     private msfr: FaceRecognitionService
   ) {
     this.registration = fb.group({
-      'lastname': [null, Validators.compose([])],
-      'firstname': [null, Validators.compose([])],
-      'midname': [null, Validators.compose([])],
-      'company': [null, Validators.compose([])],
-      'post': [null, Validators.compose([])],
+      'lastname': [null, Validators.compose([Validators.required])],
+      'firstname': [null, Validators.compose([Validators.required])],
+      'midname': [null, Validators.compose([Validators.required])],
+      'company': [null, Validators.compose([Validators.required])],
+      'post': [null, Validators.compose([Validators.required])],
     });
   }
 
@@ -95,6 +95,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   takePhoto() {
+    this.noPhoto = false;
     const context = this.canvas.nativeElement.getContext('2d');
     context.drawImage(this.camera.nativeElement, 0, 0);
     this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');

@@ -9,6 +9,10 @@ input[type='text'] {
   margin-top: 5px;
 }
 
+input[type='text'].invalid {
+  border: 1px solid #a5291e;
+}
+
 input[type='submit'], button {
   color: white;
   background-color: #3DA600;

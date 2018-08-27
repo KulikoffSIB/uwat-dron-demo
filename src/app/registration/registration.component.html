@@ -24,31 +24,36 @@
     <form [formGroup]="registration" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <label> Фамилия
-          <input type="text" formControlName="lastname">
+          <input type="text" formControlName="lastname"
+                 [ngClass]="{invalid: registration.controls['lastname'].touched && registration.controls['lastname'].invalid}">
         </label>
       </div>
       <div class="form-row">
         <label> Имя
-          <input type="text" formControlName="firstname">
+          <input type="text" formControlName="firstname"
+                 [ngClass]="{invalid: registration.controls['firstname'].touched && registration.controls['firstname'].invalid}">
         </label>
       </div>
       <div class="form-row">
         <label> Отчество
-          <input type="text" formControlName="midname">
+          <input type="text" formControlName="midname"
+                 [ngClass]="{invalid: registration.controls['midname'].touched && registration.controls['midname'].invalid}">
         </label>
       </div>
       <div class="form-row">
         <label> Компания
-          <input type="text" formControlName="company">
+          <input type="text" formControlName="company"
+                 [ngClass]="{invalid: registration.controls['company'].touched && registration.controls['company'].invalid}">
         </label>
       </div>
       <div class="form-row">
         <label> Должность
-          <input type="text" formControlName="post">
+          <input type="text" formControlName="post"
+                 [ngClass]="{invalid: registration.controls['post'].touched && registration.controls['post'].invalid}">
         </label>
       </div>
       <div class="form-row">
-        <input type="submit" value="ДОБАВИТЬ">
+        <input type="submit" value="ДОБАВИТЬ" [disabled]="registration.valid">
       </div>
       <div class="form-row error" *ngIf="faceError">
         Лицо не распознано
