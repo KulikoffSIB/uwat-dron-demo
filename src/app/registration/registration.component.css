@@ -34,6 +34,10 @@ label, input, button, .error {
   font-weight: 600;
 }
 
+button:disabled {
+  cursor: no-drop;
+}
+
 .error {
   color: #a5291e;
   text-shadow: 2px 2px 2px #031323;

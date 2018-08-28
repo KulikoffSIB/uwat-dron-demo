@@ -8,10 +8,12 @@ import {Observable} from 'rxjs';
 export class FaceRecognitionService {
   key: string;
   MSFR_API_HOST: string;
+  groupId: string;
 
   constructor(private http: HttpClient) {
     this.key = 'c4117f4506b34793a16df70be1003b23';
     this.MSFR_API_HOST = 'https://northeurope.api.cognitive.microsoft.com/face/v1.0/';
+    this.groupId = '1534';
   }
 
   detect(base64img: string): Observable<any> {
@@ -34,7 +36,7 @@ export class FaceRecognitionService {
     post: string;
     imgURL: string;
   }): Observable<any> {
-    return this.http.post(this.MSFR_API_HOST + 'persongroups/1534/persons', {
+    return this.http.post(this.MSFR_API_HOST + 'persongroups/' + this.groupId + '/persons', {
       name: 'demo-person',
       userData: JSON.stringify(user)
     }, {
@@ -47,11 +49,22 @@ export class FaceRecognitionService {
 
   // добавление фото для пользователя по id пользователя
   addUserPhoto(base64img: string, userId: string): Observable<any> {
-    return this.http.post(this.MSFR_API_HOST + 'persongroups/1534/persons/' + userId + '/persistedFaces',
+    return this.http.post(this.MSFR_API_HOST + 'persongroups/' + this.groupId + '/persons/' + userId + '/persistedFaces',
       this.convertToBLOB(base64img),
       {
         headers: {
           'Content-Type': 'application/octet-stream',
+          'Ocp-Apim-Subscription-Key': this.key
+        }
+      });
+  }
+
+  // обучение по группе
+  trainByGroup(): Observable<any> {
+    return this.http.post(this.MSFR_API_HOST + 'persongroups/' + this.groupId + '/train',
+      {},
+      {
+        headers: {
           'Ocp-Apim-Subscription-Key': this.key
         }
       });

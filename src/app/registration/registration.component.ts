@@ -16,6 +16,9 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('photo') photo: ElementRef;
   registration: FormGroup;
   videoURL = window.URL;
+  photoLimit = 6;
+  validPhotos = [];
+  photoshooting = false;
   base64image: string;
   imgURL: string;
   userId: string;
@@ -59,22 +62,28 @@ export class RegistrationComponent implements OnInit {
         imgURL: this.imgURL
       }).subscribe(user => {
         this.userId = user['personId'];
+        let attachedPhoto = 0;
 
-        this.msfr.addUserPhoto(this.canvas.nativeElement.toDataURL('image/jpeg'), this.userId)
-          .subscribe(
+        this.validPhotos.forEach((base64Image) => {
+          this.msfr.addUserPhoto(base64Image, this.userId).subscribe(
             result => {
               this.userFaceId = result['persistedFaceId'];
+              attachedPhoto++;
             },
             error => {
               this.faceError = error.message;
-              this.success = false;
-              this.noPhoto = false;
             },
             () => {
-              this.success = true;
-              this.faceError = null;
-              this.noPhoto = false;
+              if (attachedPhoto === this.photoLimit) {
+                this.msfr.trainByGroup().subscribe(() => {
+                  this.validPhotos = [];
+                  this.registration.reset();
+                  this.canvas.nativeElement.getContext('2d').clearRect(0, 0, 640, 480);
+                  this.isFace = undefined;
+                });
+              }
             });
+        });
       });
     }
   }
@@ -100,19 +109,32 @@ export class RegistrationComponent implements OnInit {
 
   takePhoto() {
     this.noPhoto = false;
+    this.photoshooting = true;
     const context = this.canvas.nativeElement.getContext('2d');
-    context.drawImage(this.camera.nativeElement, 0, 0);
-    this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
-    this.msfr.detect(this.base64image).subscribe(res => {
-      if (res.length > 0 && res[0]['faceId']) {
+    let counter = 1;
+
+    const photoTimer = setInterval(() => {
+      if (counter === this.photoLimit) {
+        clearInterval(photoTimer);
         this.imgur.uploadPersonImage(this.base64image).subscribe(imageData => {
           this.imgURL = imageData.data.link;
-          this.isFace = true;
+          this.photoshooting = false;
         });
-      } else {
-        this.isFace = false;
       }
-    });
+
+      context.drawImage(this.camera.nativeElement, 0, 0);
+      this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
+
+      this.msfr.detect(this.base64image).subscribe(res => {
+        if (res.length > 0 && res[0]['faceId']) {
+          this.isFace = true;
+          this.validPhotos.push(this.base64image);
+          counter++;
+        } else {
+          this.isFace = false;
+        }
+      });
+    }, 1000);
   }
 
 }
