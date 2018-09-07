@@ -16,7 +16,8 @@
       </div>
       <div class="flex-element-1 face-recognition-result" *ngIf="base64image && isFace != undefined">
         <span *ngIf="isFace" class="success">Лицо обнаружено</span>
-        <span *ngIf="!isFace" class="error">Лицо не обнаружено</span>
+        <span *ngIf="!isFace && !tooManyFaces" class="error">Лицо не обнаружено</span>
+        <span *ngIf="tooManyFaces" class="error">На фото много лиц</span>
       </div>
     </div>
   </div>

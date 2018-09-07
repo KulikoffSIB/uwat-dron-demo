@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit {
   noPhoto = true;
   success = false;
   isFace: boolean;
+  tooManyFaces: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -126,12 +127,21 @@ export class RegistrationComponent implements OnInit {
       this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
 
       this.msfr.detect(this.base64image).subscribe(res => {
-        if (res.length > 0 && res[0]['faceId']) {
-          this.isFace = true;
-          this.validPhotos.push(this.base64image);
-          counter++;
-        } else {
-          this.isFace = false;
+        switch (res.length) {
+          case 1:
+            this.isFace = true;
+            this.tooManyFaces = false;
+            this.validPhotos.push(this.base64image);
+            counter++;
+            break;
+          case 0:
+            this.isFace = false;
+            this.tooManyFaces = false;
+            break;
+          default:
+            this.isFace = false;
+            this.tooManyFaces = true;
+            break;
         }
       });
     }, 1000);
