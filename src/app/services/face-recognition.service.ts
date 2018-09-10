@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Observable} from 'rxjs';
+import {configuration} from '../../registration-config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class FaceRecognitionService {
   groupId: string;
 
   constructor(private http: HttpClient) {
-    this.key = 'c4117f4506b34793a16df70be1003b23';
-    this.MSFR_API_HOST = 'https://northeurope.api.cognitive.microsoft.com/face/v1.0/';
-    this.groupId = '1534';
+    this.key = configuration.key;
+    this.MSFR_API_HOST = configuration.msAPI;
+    this.groupId = configuration.group;
   }
 
   detect(base64img: string): Observable<any> {

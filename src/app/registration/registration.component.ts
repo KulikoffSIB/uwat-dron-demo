@@ -39,8 +39,8 @@ export class RegistrationComponent implements OnInit {
       'lastname': [null, Validators.compose([Validators.required])],
       'firstname': [null, Validators.compose([Validators.required])],
       'midname': [null, Validators.compose([Validators.required])],
-      'company': [null, Validators.compose([Validators.required])],
-      'post': [null, Validators.compose([Validators.required])],
+      'company': [null, Validators.compose([])],
+      'post': [null, Validators.compose([])],
     });
   }
 
