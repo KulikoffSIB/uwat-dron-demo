@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FaceRecognitionService} from '../services/face-recognition.service';
 import {ImgurService} from '../services/imgur.service';
+import {configuration} from '../../registration-config';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('photo') photo: ElementRef;
   registration: FormGroup;
   videoURL = window.URL;
-  photoLimit = 6;
+  photoLimit: number;
   validPhotos = [];
   photoshooting = false;
   base64image: string;
@@ -42,6 +43,8 @@ export class RegistrationComponent implements OnInit {
       'company': [null, Validators.compose([])],
       'post': [null, Validators.compose([])],
     });
+
+    this.photoLimit = configuration.okShots;
   }
 
   ngOnInit() {
@@ -54,6 +57,8 @@ export class RegistrationComponent implements OnInit {
       this.noPhoto = true;
     } else {
       this.noPhoto = false;
+
+      // создание персоны в группе MSFR
       this.msfr.createPerson({
         lastName: this.registration.controls['lastname'].value,
         name: this.registration.controls['firstname'].value,
@@ -65,6 +70,7 @@ export class RegistrationComponent implements OnInit {
         this.userId = user['personId'];
         let attachedPhoto = 0;
 
+        // добавление снимков этого пользователя
         this.validPhotos.forEach((base64Image) => {
           this.msfr.addUserPhoto(base64Image, this.userId).subscribe(
             result => {
@@ -76,6 +82,7 @@ export class RegistrationComponent implements OnInit {
             },
             () => {
               if (attachedPhoto === this.photoLimit) {
+                // запуск тренировки по группе
                 this.msfr.trainByGroup().subscribe(() => {
                   this.validPhotos = [];
                   this.registration.reset();
@@ -126,8 +133,10 @@ export class RegistrationComponent implements OnInit {
       context.drawImage(this.camera.nativeElement, 0, 0);
       this.base64image = this.canvas.nativeElement.toDataURL('image/jpeg');
 
+      // обнаружение лица
       this.msfr.detect(this.base64image).subscribe(res => {
         switch (res.length) {
+          // добавляем фото только если нашли одно лицо
           case 1:
             this.isFace = true;
             this.tooManyFaces = false;
@@ -144,7 +153,7 @@ export class RegistrationComponent implements OnInit {
             break;
         }
       });
-    }, 1000);
+    }, configuration.shotTimeout * 1000);
   }
 
 }
